@@ -11,16 +11,15 @@ import java.util.List;
 @RestController
 @RequestMapping("api/v1/student")
 public class StudentController {
+
+    private final StudentService studentService;
+
+    public StudentController(StudentService studentService) {
+        this.studentService = studentService;
+    }
+
     @GetMapping
     public List<Student> getStudents() {
-        return List.of(
-                new Student(
-                        1L,
-                        "Semo",
-                        "Semo@semo",
-                        LocalDate.of(2002, Month.AUGUST,26),
-                        21
-                )
-        );
+        return studentService.getStudents();
     }
 }
